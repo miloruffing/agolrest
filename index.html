@@ -40,6 +40,54 @@
         const graphicsLayer = new GraphicsLayer();  // Create a new graphics layer
         map.add(graphicsLayer); // Add it to the map
 
+////////////////////////////////////////////////////////////////////////////////////////////
+///////////////POLYLINE/////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+
+        // Define the polyline's geometry
+          const polyline = {
+            type: "polyline",
+            paths: [
+              [-97.59, 30.89], // Point A
+              [-97.620396,  30.833373], //Point B
+              [-97.67, 30.83]  // Point C
+              // Add more points as needed
+            ]
+          };
+
+          // Define the polyline's symbol
+          const simpleLineSymbol = {
+            type: "simple-line",
+            color: [226, 119, 40], // Orange
+            width: 2
+          };
+
+          // Define the popup properties
+          const polylinepopupTemplate = {
+            title: "{Name}",
+            content: "{Description}"
+          };
+
+          const polylineattributes = {
+            Name: "Jarrel, TX EF5 Tornado Path",
+            Description: "This extremely violent tornado from 1997 traveled extremely slowly, and in the opposite direction of typical tornadoes."
+          };
+
+          // Create a new Graphic object with the polyline's geometry and symbol
+          const polylineGraphic = new Graphic({
+            geometry: polyline,
+            symbol: simpleLineSymbol,
+            attributes: polylineattributes,
+            popupTemplate: polylinepopupTemplate
+          });
+
+          // Add the new Graphic object to the graphics layer
+          graphicsLayer.add(polylineGraphic);
+
+////////////////////////////////////////////////////////////////////////////////////////////
+///////////////POINT////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
+
         // defining the geometry of the point
         const point = { //Create a point  
           type: "point",  
@@ -49,7 +97,8 @@
 
         // defining the maker style
         const simpleMarkerSymbol = {  
-        type: "square",  
+        type: "simple-marker", 
+        style: "square", 
         color: [0, 0, 139],  // Color of blues rock
         outline: {  
           color: [255, 255, 255], // White  
@@ -57,14 +106,77 @@
         }  
       };
 
+      //defining popup properties
+      const popupTemplate = {
+        title: "{Name}",
+        content: "{Description}"
+      }
+      const attributes = {
+        Name: "Stevie Ray Vaughan Statue",
+        Description: "A bronze sculpture of Stevie Ray Vaughan by Ralph Helmick"
+      }
+
       //creating the point
       const pointGraphic = new Graphic({  
         geometry: point,  
-        symbol: simpleMarkerSymbol  
+        symbol: simpleMarkerSymbol,
+        
+        // adding popup properties
+        attributes: attributes,
+        popupTemplate: popupTemplate
+
       });
 
       // adding the point to the graphics layer
       graphicsLayer.add(pointGraphic);
+
+      /////////////////////////////////////////////////////////////////////////////
+      /////////////////////////POLYGON/////////////////////////////////////////////
+      /////////////////////////////////////////////////////////////////////////////
+
+      // Define the polygon's geometry
+      const polygon = {
+        type: "polygon",
+        rings: [
+          [-97.620769, 30.837577], // Point A
+          [-97.619170, 30.833741], // Point B
+          [-97.621603, 30.832959], // Point C
+          [-97.623273, 30.836785]  // Point D 
+          // Add more points as needed
+        ]
+      };
+
+      // Define the polygon's symbol
+      const simpleFillSymbol = {
+        type: "simple-fill",
+        color: [227, 139, 79, 0.8], // Orange, semi-transparent
+        outline: {
+          color: [255, 255, 255], // White
+          width: 1
+        }
+      };
+
+      // Define the popup properties
+      const polygonPopupTemplate = {
+        title: "{Name}",
+        content: "{Description}"
+      };
+
+      const polygonAttributes = {
+        Name: "Double Creek Estates",
+        Description: "This is where the tornado did its worst damage."
+      };
+
+      // Create a new Graphic object with the polygon's geometry and symbol
+      const polygonGraphic = new Graphic({
+        geometry: polygon,
+        symbol: simpleFillSymbol,
+        attributes: polygonAttributes,
+        popupTemplate: polygonPopupTemplate
+      });
+
+      // Add the new Graphic object to the graphics layer
+      graphicsLayer.add(polygonGraphic);
     });
   </script>
 
