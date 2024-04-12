@@ -23,9 +23,12 @@
     "esri/layers/GraphicsLayer", 
 
     //adding in the module for the feature layers
-    "esri/layers/FeatureLayer"
+    "esri/layers/FeatureLayer",
 
-    ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer, FeatureLayer) {
+    //adding editor widget
+    "esri/widgets/Editor"
+
+    ], function(esriConfig,Map, MapView, Graphic, GraphicsLayer, FeatureLayer, Editor) {
 
       esriConfig.apiKey = "AAPK563eb1712e9d41edbd3f529286c8f948VRUNmpGsQs8vbooD1VMSvLo25vGAVTkzewpqswbQlLwqrjFKFyF2XNPVPR7oD_8m";
       const map = new Map({
@@ -292,6 +295,34 @@
 
         //adding the feature layer to the map
         map.add(heliportlayer);
+
+
+        //adding the const for the feature layer
+        const myAirports = new FeatureLayer({
+        url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/mruffing_myairports/FeatureServer",
+        
+        //adding the popup here
+        outFields: ["AirportCode"],
+
+        });
+
+        //adding the feature layer to the map
+        map.add(myAirports);
+
+        // Set the point layer's LayerInfo
+        const pointInfos = {
+        layer: myAirports
+        }
+
+        // Begin Editor constructor
+        const editor = new Editor({
+        view: view,
+        layerInfos: [pointInfos]
+        }); // End Editor constructor
+
+        // Add the widget to the view
+        view.ui.add(editor, "top-right");
+
     });
   </script>
 
