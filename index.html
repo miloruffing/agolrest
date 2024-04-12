@@ -7,7 +7,7 @@
   <meta name="description" content="" />
 
   <!-- calls for the arcgis api's CSS file and JS library. -->
-  <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes//main.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.25/"></script>
 
   <!-- Adding the modules, API key, and map constant needed for a full screen map app -->
@@ -189,7 +189,7 @@
     // Define a pop-up for usaeduLayer
       const popupEduusa = {
         "title": "EDUs",
-        "content": "<b>Name:</b> {INSTNM}<br><b>Total Enrollment:</b> {INSTSIZE}<br>"
+        "content": "<b>Name:</b> {INSTNM}<br>    <b>Total Enrollment:</b> {INSTSIZE}<br>   <b>Address:</b> {ADDR}<br>   <b>City:</b> {CITY}<br>   <b>Locale:</b> {LOCALE}<br>  <b>Level of Institution:</b> {ICLEVEL}<br>  <b>Website:</b> {WEBADDR}<br> <b>Phone Number:</b> {GENTELE}<br> "
       }
 
       //adding the Const for the feature layer
@@ -197,13 +197,36 @@
       url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
 
       //adding the popup here
-      outFields: ["INSTNM","INSTSIZE"],
+      outFields: ["INSTNM","INSTSIZE","ADDR","CITY", "LOCALE", "ICLEVEL", "WEBADDR", "GENTELE"],
       popupTemplate: popupEduusa
       });
     
       //adding the feature layer to the map
       map.add(usaeduLayer);
 
+
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////Airports////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+    //setting up the icon
+    const airportRenderer = {
+        "type": "simple",
+        "symbol": {
+          "type": "picture-marker",
+          "url": "https://github.com/miloruffing/agol/blob/main/black-24dp/1x/outline_local_airport_black_24dp.png",
+          "width": "18px",
+          "height": "18px"
+        }
+      }
+
+      const airportlayer = new FeatureLayer({
+        url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/miloruffing_usairports/FeatureServer", //get URL from AGOL Item Page
+        renderer: airportRenderer //calling the icon
+      });
+
+        //adding the feature layer to the map
+        map.add(airportlayer);
     });
   </script>
 
