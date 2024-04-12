@@ -7,7 +7,7 @@
   <meta name="description" content="" />
 
   <!-- calls for the arcgis api's CSS file and JS library. -->
-  <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.29/esri/themes/dark/main.css">
   <script src="https://js.arcgis.com/4.25/"></script>
 
   <!-- Adding the modules, API key, and map constant needed for a full screen map app -->
@@ -189,7 +189,7 @@
     // Define a pop-up for usaeduLayer
       const popupEduusa = {
         "title": "EDUs",
-        "content": "<b>Name:</b> {NAME}<br><b>Total Enrollment:</b> {TOT_ENROLL}<br>"
+        "content": "<b>Name:</b> {INSTNM}<br><b>Total Enrollment:</b> {INSTSIZE}<br>"
       }
 
       //adding the Const for the feature layer
@@ -197,7 +197,7 @@
       url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/Colleges_and_Universities_View/FeatureServer",
 
       //adding the popup here
-      outFields: ["NAME","TOT_ENROLL"],
+      outFields: ["INSTNM","INSTSIZE"],
       popupTemplate: popupEduusa
       });
     
