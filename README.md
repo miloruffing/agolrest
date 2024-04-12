@@ -1,2 +1,2 @@
 # esrijs
-My ESRI JS Map accessing AGOL
+My ESRI JS Map for reading and writing AGOL
