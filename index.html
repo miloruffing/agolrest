@@ -259,7 +259,7 @@
           "type": "simple",
           "symbol": {
             "type": "picture-marker",
-            "url": "happy_helicopter.png", 
+            "url": "happy hospital.png", 
             "width": "18px",
             "height": "18px"
           }
@@ -285,7 +285,7 @@
 
       const heliportlayer = new FeatureLayer({
         url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/miloruffing_usairports/FeatureServer", //get URL from AGOL Item Page
-        renderer: airportRenderer, // calling the icon
+        renderer: heliportRenderer, // calling the icon
         definitionExpression: "Fac_Type = 'HELIPORT'", //adding sql to filter for airports
         labelingInfo: [heliportLabels] //adding the labels
       });
